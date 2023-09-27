@@ -1,5 +1,6 @@
 ﻿using Demo_01.DAL.Entities;
 using Demo_01.DAL.Repositories;
+using Demo_01.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -41,6 +42,25 @@ namespace Demo_01.Controllers
             return Ok(trainer);
         }
 
+        [HttpPost]
+        public IActionResult AddTrainer(TrainerDTO trainer)
+        {
+            Trainer trainerToAdd = new Trainer
+            {
+                LastName = trainer.LastName,
+                FirstName = trainer.FirstName,
+                BirthDate = trainer.BirthDate
+            };
 
+            Trainer trainerAdded = _TrainerRepository.Create(trainerToAdd);
+
+            // Renvoie d'une 201
+            return CreatedAtAction
+                (
+                    nameof(GetTrainer), //string : nom de l'action à mettre dans le location
+                    new { trainerId = trainerAdded.Id }, //objet : contenant tous les paramètres dont la route a besoin (ici notre GetTrainer a besoin de trainerId)
+                    trainerAdded //objet : représente l'objet qui vient d'être crée (qui sera dans le body de la reponse)
+                );
+        }
     }
 }
