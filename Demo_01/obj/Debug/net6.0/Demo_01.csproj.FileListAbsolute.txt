@@ -30,3 +30,5 @@ C:\Users\BSTORMAude\Desktop\[2] Current Formations\[2023] TB - Net Angular\Net\W
 C:\Users\BSTORMAude\Desktop\[2] Current Formations\[2023] TB - Net Angular\Net\Web API\Demo_01\obj\Debug\net6.0\Demo_01.pdb
 C:\Users\BSTORMAude\Desktop\[2] Current Formations\[2023] TB - Net Angular\Net\Web API\Demo_01\obj\Debug\net6.0\Demo_01.genruntimeconfig.cache
 C:\Users\BSTORMAude\Desktop\[2] Current Formations\[2023] TB - Net Angular\Net\Web API\Demo_01\obj\Debug\net6.0\ref\Demo_01.dll
+C:\Users\BSTORMAude\Desktop\[2] Current Formations\[2023] TB - Net Angular\Net\Web API\Demo_01\bin\Debug\net6.0\Demo_01.DAL.dll
+C:\Users\BSTORMAude\Desktop\[2] Current Formations\[2023] TB - Net Angular\Net\Web API\Demo_01\bin\Debug\net6.0\Demo_01.DAL.pdb
