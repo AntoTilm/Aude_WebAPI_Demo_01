@@ -62,5 +62,18 @@ namespace Demo_01.Controllers
                     trainerAdded //objet : représente l'objet qui vient d'être crée (qui sera dans le body de la reponse)
                 );
         }
+
+        [HttpDelete]
+        public IActionResult DeleteTrainer(int trainerId)
+        {
+            if(_TrainerRepository.Delete(trainerId))
+            {
+                return NoContent();
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
     }
 }
