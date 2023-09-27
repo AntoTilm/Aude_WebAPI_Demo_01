@@ -11,8 +11,8 @@ namespace Demo_01.Controllers
     public class TrainerController : ControllerBase
     {
         private TrainerRepository _TrainerRepository;
-        public TrainerController(TrainerRepository trainerRepository) 
-        { 
+        public TrainerController(TrainerRepository trainerRepository)
+        {
             _TrainerRepository = trainerRepository;
             // 1 (mauvaise) façon d'injecter notre TrainerRepository
             //_TrainerRepository = new TrainerRepository();
@@ -23,9 +23,24 @@ namespace Demo_01.Controllers
         {
             IEnumerable<Trainer> trainers = _TrainerRepository.GetAll();
             return Ok(trainers);
+
+            // Demo avant qu'on mette la liste étou
             //return Ok(new { message = "Hello les .Net de Technobel" });
             //OU
             //return StatusCode(StatusCodes.Status200OK, "Hello les .Net de Technobel");
         }
+
+        [HttpGet("{trainerId}")]
+        public IActionResult GetTrainer(int trainerId)
+        {
+            Trainer? trainer = _TrainerRepository.GetById(trainerId);
+            if(trainer is null)
+            {
+                return NotFound();
+            }
+            return Ok(trainer);
+        }
+
+
     }
 }
