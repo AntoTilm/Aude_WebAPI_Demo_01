@@ -86,5 +86,23 @@ namespace Demo_01.DAL.Repositories
         }
 
         // UPDATE
+        public bool Update(int trainerId, Trainer trainer) 
+        { 
+            // On vérifie si le Trainer est présent 
+            Trainer? trainerToUpdate = _trainers.SingleOrDefault(trainer => trainer.Id == trainerId);
+
+            // Si pas -> Ca dégage
+            if(trainerToUpdate is null)
+            {
+                return false;
+            }
+
+            // Si présent, on le modifie et ouip
+            trainerToUpdate.LastName = trainer.LastName;
+            trainerToUpdate.FirstName = trainer.FirstName;
+            trainerToUpdate.BirthDate = trainer.BirthDate;
+
+            return true;
+        }
     }
 }
