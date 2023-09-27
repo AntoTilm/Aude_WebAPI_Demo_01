@@ -63,7 +63,7 @@ namespace Demo_01.Controllers
                 );
         }
 
-        [HttpDelete]
+        [HttpDelete("{trainerId}")]
         public IActionResult DeleteTrainer(int trainerId)
         {
             if(_TrainerRepository.Delete(trainerId))
@@ -74,6 +74,12 @@ namespace Demo_01.Controllers
             {
                 return NotFound();
             }
+        }
+
+        [HttpPut("{trainerId}")]
+        public IActionResult UpdateTrainer(int trainerId, TrainerDTO trainer)
+        {
+            return StatusCode(StatusCodes.Status501NotImplemented, new { reason = "Flemme" } );
         }
     }
 }
