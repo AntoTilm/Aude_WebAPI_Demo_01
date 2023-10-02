@@ -9,6 +9,7 @@ builder.Services.AddScoped<TrainerRepository>();
 // Une instance par demande
 //builder.Services.AddTransient<TrainerRepository>();
 // Une instance par demande, par tâches à faire pour la demande
+builder.Services.AddScoped<CourseRepository>();
 
 
 builder.Services.AddControllers();
