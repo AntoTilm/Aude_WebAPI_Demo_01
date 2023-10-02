@@ -3,6 +3,7 @@ using Demo_01.DAL.Repositories;
 using Demo_01.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data.SqlTypes;
 using System.Net;
 
 namespace Demo_01.Controllers
@@ -20,6 +21,7 @@ namespace Demo_01.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Trainer>))]
         public IActionResult GetTrainers()
         {
             IEnumerable<Trainer> trainers = _TrainerRepository.GetAll();
@@ -31,7 +33,9 @@ namespace Demo_01.Controllers
             //return StatusCode(StatusCodes.Status200OK, "Hello les .Net de Technobel");
         }
 
-        [HttpGet("{trainerId}")]
+        [HttpGet("{trainerId:int:min(1)}")]
+        [ProducesResponseType(200, Type = typeof(Trainer))]
+        [ProducesResponseType(404)]
         public IActionResult GetTrainer(int trainerId)
         {
             Trainer? trainer = _TrainerRepository.GetById(trainerId);
@@ -43,6 +47,7 @@ namespace Demo_01.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(201, Type = typeof(Trainer))]
         public IActionResult AddTrainer(TrainerDTO trainer)
         {
             Trainer trainerToAdd = new Trainer
@@ -63,7 +68,9 @@ namespace Demo_01.Controllers
                 );
         }
 
-        [HttpDelete("{trainerId}")]
+        [HttpDelete("{trainerId:int}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
         public IActionResult DeleteTrainer(int trainerId)
         {
             if(_TrainerRepository.Delete(trainerId))
@@ -76,7 +83,8 @@ namespace Demo_01.Controllers
             }
         }
 
-        [HttpPut("{trainerId}")]
+        [HttpPut("{trainerId:int}")]
+        [ProducesResponseType(501)]
         public IActionResult UpdateTrainer(int trainerId, TrainerDTO trainer)
         {
             return StatusCode(StatusCodes.Status501NotImplemented, new { reason = "Flemme" } );
